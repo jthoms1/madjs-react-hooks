@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Introduction to React Hooks</title>
+    <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    </script>
+
+    <style>
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      body > div.reveal {
+        font-family: 'Poppins', sans-serif;
+        color: #B9C0D2;
+      }
+      img.emoji {
+        width: 45px;
+      }
+      h2 img.emoji {
+        width: 52px;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #FFF;
+        text-transform: none;
+      }
+      .reveal section img.nostyle {
+          background: none;
+          border: none;
+          box-shadow: none;
+          margin: 0;
+      }
+      .reveal section img.roundup {
+          border: 2px solid #fff;
+          height: 40px;
+    	    width: 40px;
+    	    border-radius: 23px;
+    	    display: block;
+    	    margin: -15px auto 0;
+      }
+      .example-num {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 0.8em;
+        color: grey;
+      }
+      b {
+        font-weight: normal;
+        color:aqua;
+      }
+      i {
+        font-style: normal;
+        color: yellow;
+      }
+      img.trans {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h3>Introduction to React Hooks</h3>
+          <p>
+            <small>
+              Josh Thomas / <a href="http://twitter.com/jthoms1">@jthoms1</a>
+            </small>
+            <img class="roundup" src="images/jthoms1-logo.png" />
+          </p>
+          <aside class="notes">
+            <li>If you have any questions during please interupt. It is likely if you have
+              a question others are probably thinking the same thing.
+            </li>
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/gatsby.svg" class="nostyle" />
+          <aside class="notes">
+            Gatsby is a static site builder built with React.  You can think of it as a React
+            based tool for building static HTML sites. With most static site builders you would
+            think of the data source being markdown, but the Gatsby the datasource can be many different
+            things because of the adapters hat it provides. Drupal, Wordperss, APIs, JSON, Markdown and 
+            many others.
+
+            - First created in 2015. Open source
+          </aside>
+        </section>
+
+        <section>
+          <h3>What is a Static Site Generator (SSG)?</h3>
+          <ul>
+            npx create-react-app example
+            npm install react@next react-dom@next
+          </ul>
+        </section>
+
+        <section>
+          <h3>Why would you ever need a static site?</h3>
+          <ul>
+            <li class="fragment">Crawlable site (Not only Googlebot)</li>
+            <li class="fragment">'Time to Interactive' would be much faster</li>
+            <li class="fragment">Reduced server costs</li>
+            <li class="fragment">Increased Security</li>
+          </ul>
+          <aside class="notes">
+            - Usually there are many other bots out there besides google that you might what to access your site.
+              Facebook, news aggregationand more.
+            - Time to Intactive has become one of the leading markers that people use to specify the speed of a site.
+              Time to Interactive is defined as the point at which layout has stabilized, key webfonts are visible, and the main thread is available enough to handle user input.
+              There are many studies done but it seems like 3 seconds is the cut off for a user until the abandon the site and move on.
+              So either you deliver on this metric or possibly miss out on a high percentage of site visitors.
+            - Reducing the costs of your server.  Hosting static files is cheap and there are many hosting options.
+              Compare this to the cost of hosting a production level DB and CPU cycles.  Also static files can easily
+              be replicated accross the world on content delivery networks.
+            - There is no production database or admin interface, so much less surface area of an attacker.
+          </aside>
+        </section>
+
+        <section>
+          <h3>When would not use a static site?</h3>
+          <ul>
+            <li class="fragment">Building an actual web application</li>
+          </ul>
+          <aside class="notes">
+            - Is there a login and is the content that this particular person uses unique to them.
+            - Think twitter or facebook. It wouldn't make much sense to build static pages if the content on each page is unique.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h3>How is Gatsby different from all the others?</h3>
+            <ul>
+              <li class="fragment">Performance is one of the most important features</li>
+              <li class="fragment">PWA out of the box (PRPL pattern)</li>
+              <li class="fragment">All templates/components are built in React</li>
+              <li class="fragment">Unopinoinated on where the data is stored or what kind of data it is</li>
+            </ul>
+          </section>
+          <section data-transition="slide">
+            <h3>What is the PRPL pattern</h3>
+            <ul>
+              <li><b>Push</b> critical resources for the initial URL route.</li>
+              <li><b>Render</b> initial route.</li>
+              <li><b>Pre-cache</b> remaining routes.</li>
+              <li><b>Lazy-load</b> and create remaining routes on demand.</li>
+            </ul>
+          </section>
+          <aside class="notes">
+            - Gatsby was first built to improve the speed of a React based website. If you read there docs and feature lists
+              you will start to see the importance in their technology for performance related decisions.
+            - Gatsby is also one of the only Static Site generators that actually generates a PWA out of the box.  Meaning that
+              it uses a service worker for offline access, link prefetching, and heavy use of page caching.
+            - All templates/components are built with React/JSX so if you like the props down pattern and expressiveness
+              of JSX this might be for you.  Also you can use a lot of the existing Eco-systems components for your site.
+            - For me this is one of the most interesting aspects. The data sources can be markdown, JSON, or even 
+              an existing CMS system.  Gatsby provides 'Source Plugins' to allow your components to gather data from various
+              source in a standardized format GraphQL.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Lets get started.</h3>
+          <ul>
+            <pre><code class="bash">npm install --global gatsby-cli</code></pre>
+            <pre><code class="bash">gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-default#v2</code></pre>
+            <pre><code class="bash">cd gatsby-site; gatsby develop</code></pre>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Node/NPM</li>
+              <li>Webpack for blundling, resource splitting, HMR (preconfigured)</li>
+              <li>React</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Live Demo</h3>
+          <aside class="notes">
+            Folder Structure
+            Configuration
+            - gatsby-config.js 
+          </aside>
+        </section>
+
+        <section>
+          <h3>Project Configuration</h3>
+          <ul>
+            <li class="fragment"><b><code>siteMetadata</code></b> - title, publish url, description, etc.</li>
+            <li class="fragment"><b><code>plugins</code></b> - a configured list of gatsby plugins to use on the site</li>
+            <li class="fragment"><b><code>pathPrefix</code></b> - when you are not in the site root</li>
+            <li class="fragment"><b><code>mapping</code></b> - lets you cross reference available data sources for query later</li>
+            <li class="fragment"><b><code>proxy</code></b> - given a specific API path map to an external data source.</li>
+          </ul>
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h3>So you like Plugins, We got a lot.</h3>
+          <ul>
+            <li class="fragment"><b>Code</b> - Typescript, JSS, SASS, LESS, Glamour, Coffeescript, Stylus, etc.</li>
+            <li class="fragment"><b>Data Source</b> - Drupal, Wordpress, Wikipedia, npm, filesystem, mongodb, etc.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Advanced API Usage</h3>
+          <ul>
+            <li class="fragment"><b>Node APIs</b><br/>https://next.gatsbyjs.org/docs/node-apis/</li>
+            <li class="fragment"><b>Browser APIs</b><br/>https://next.gatsbyjs.org/docs/browser-apis/</li>
+            <li class="fragment"><b>SSR APIs</b><br/>https://next.gatsbyjs.org/docs/ssr-apis/</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Questions?</h2>
+          <br/>
+          <ul>
+            <li>
+              <a href="https://www.gatsbyjs.org/tutorial/">https://www.gatsbyjs.org/tutorial/</a>
+            <li>
+              <a href="https://next.gatsbyjs.org/docs/querying-with-graphql/">https://next.gatsbyjs.org/docs/querying-with-graphql/</a>
+            <li>
+              <a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">https://developers.google.com/web/fundamentals/performance/prpl-pattern/</a>
+            <li>
+              <a href="https://www.gatsbyjs.org/features/">https://www.gatsbyjs.org/features/</a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
