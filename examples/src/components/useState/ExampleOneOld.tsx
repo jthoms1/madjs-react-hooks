@@ -13,17 +13,11 @@ export default class Counter extends React.Component<{}, State> {
     }
   }
 
-  setCount(newCount: number) {
-    this.setState((prevState) => ({
-      count: newCount
-    }))
-  }
-
   render() {
     return (
       <div className="counter">
         <p>You clicked {this.state.count} times.</p>
-        <button onClick={() => this.setCount(this.state.count + 1)}>Click me</button>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>Click me</button>
       </div>
     )
   }

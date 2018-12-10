@@ -134,6 +134,7 @@ export default Counter;
           - First announced at React Conf last month and since then it has really blown up in popularity.
           - I was at React Conf and that's all anyone could talk about.
           - Vue is dabbling with implementing. 
+          - A hook is a special function that lets you hook into React features
           </aside>
         </section>
 
@@ -178,125 +179,51 @@ export default Counter;
         </section>
 
         <section>
-          <h3>Hooks API</h3>
-        </section>
-
-        <section>
           <h3>Refactoring into a simpler approach</h3>
+
+          break down example
         </section>
+
 
         <section>
-          <h3>Composition</h3>
-        </section>
-
-        </section>
-
-        <section>
-          <h3>What is a Static Site Generator (SSG)?</h3>
+          <h3>Hooks API</h3>
           <ul>
-            npx create-react-app example
-            npm install react@next react-dom@next
+            <li>useState</li>
+            <li>useEffect</li>
           </ul>
         </section>
 
         <section>
-          <h3>Why would you ever need a static site?</h3>
+          <h3>useState</h3>
+          - Easy to understand
+        </section>
+
+        <section>
+          <h3>useEffect</h3>
+          - side effects in a function
+          - componentDidMount, componentDidUpdate, componentWillMount
+          - set a function to be executed after render is done
+          - gets rid of some duplicates with DidMount, DidUpdate
+          - runs after every render
+          - does not block
+
+          - return a function if you want it to be executed for cleanup. Think WillUnmount
+          - fantastic for subscribe, unsubscribe
+
+          - accepts second parameter as array of values to check if a value is different to rerun
+
+        </section>
+
+        <section>
+          <h3>Other Hooks</h3>
           <ul>
-            <li class="fragment">Crawlable site (Not only Googlebot)</li>
-            <li class="fragment">'Time to Interactive' would be much faster</li>
-            <li class="fragment">Reduced server costs</li>
-            <li class="fragment">Increased Security</li>
-          </ul>
-          <aside class="notes">
-            - Usually there are many other bots out there besides google that you might what to access your site.
-              Facebook, news aggregationand more.
-            - Time to Intactive has become one of the leading markers that people use to specify the speed of a site.
-              Time to Interactive is defined as the point at which layout has stabilized, key webfonts are visible, and the main thread is available enough to handle user input.
-              There are many studies done but it seems like 3 seconds is the cut off for a user until the abandon the site and move on.
-              So either you deliver on this metric or possibly miss out on a high percentage of site visitors.
-            - Reducing the costs of your server.  Hosting static files is cheap and there are many hosting options.
-              Compare this to the cost of hosting a production level DB and CPU cycles.  Also static files can easily
-              be replicated accross the world on content delivery networks.
-            - There is no production database or admin interface, so much less surface area of an attacker.
-          </aside>
-        </section>
-
-        <section>
-          <h3>When would not use a static site?</h3>
-          <ul>
-            <li class="fragment">Building an actual web application</li>
-          </ul>
-          <aside class="notes">
-            - Is there a login and is the content that this particular person uses unique to them.
-            - Think twitter or facebook. It wouldn't make much sense to build static pages if the content on each page is unique.
-          </aside>
-        </section>
-
-        <section>
-          <section>
-            <h3>How is Gatsby different from all the others?</h3>
-            <ul>
-              <li class="fragment">Performance is one of the most important features</li>
-              <li class="fragment">PWA out of the box (PRPL pattern)</li>
-              <li class="fragment">All templates/components are built in React</li>
-              <li class="fragment">Unopinoinated on where the data is stored or what kind of data it is</li>
-            </ul>
-          </section>
-          <section data-transition="slide">
-            <h3>What is the PRPL pattern</h3>
-            <ul>
-              <li><b>Push</b> critical resources for the initial URL route.</li>
-              <li><b>Render</b> initial route.</li>
-              <li><b>Pre-cache</b> remaining routes.</li>
-              <li><b>Lazy-load</b> and create remaining routes on demand.</li>
-            </ul>
-          </section>
-          <aside class="notes">
-            - Gatsby was first built to improve the speed of a React based website. If you read there docs and feature lists
-              you will start to see the importance in their technology for performance related decisions.
-            - Gatsby is also one of the only Static Site generators that actually generates a PWA out of the box.  Meaning that
-              it uses a service worker for offline access, link prefetching, and heavy use of page caching.
-            - All templates/components are built with React/JSX so if you like the props down pattern and expressiveness
-              of JSX this might be for you.  Also you can use a lot of the existing Eco-systems components for your site.
-            - For me this is one of the most interesting aspects. The data sources can be markdown, JSON, or even 
-              an existing CMS system.  Gatsby provides 'Source Plugins' to allow your components to gather data from various
-              source in a standardized format GraphQL.
-          </aside>
-        </section>
-
-        <section>
-          <h3>Lets get started.</h3>
-          <ul>
-            <pre><code class="bash">npm install --global gatsby-cli</code></pre>
-            <pre><code class="bash">gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-default#v2</code></pre>
-            <pre><code class="bash">cd gatsby-site; gatsby develop</code></pre>
-          </ul>
-          <aside class="notes">
-            <ul>
-              <li>Node/NPM</li>
-              <li>Webpack for blundling, resource splitting, HMR (preconfigured)</li>
-              <li>React</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h3>Live Demo</h3>
-          <aside class="notes">
-            Folder Structure
-            Configuration
-            - gatsby-config.js 
-          </aside>
-        </section>
-
-        <section>
-          <h3>Project Configuration</h3>
-          <ul>
-            <li class="fragment"><b><code>siteMetadata</code></b> - title, publish url, description, etc.</li>
-            <li class="fragment"><b><code>plugins</code></b> - a configured list of gatsby plugins to use on the site</li>
-            <li class="fragment"><b><code>pathPrefix</code></b> - when you are not in the site root</li>
-            <li class="fragment"><b><code>mapping</code></b> - lets you cross reference available data sources for query later</li>
-            <li class="fragment"><b><code>proxy</code></b> - given a specific API path map to an external data source.</li>
+            <li>useContext</li>
+            <li>useReducer</li>
+            <li>useCallback</li>
+            <li>useMemo</li>
+            <li>useRef</li>
+            <li>useImperativeMethods</li>
+            <li>useLayoutEffect</li>
           </ul>
           <aside class="notes">
 
@@ -304,20 +231,25 @@ export default Counter;
         </section>
 
         <section>
-          <h3>So you like Plugins, We got a lot.</h3>
-          <ul>
-            <li class="fragment"><b>Code</b> - Typescript, JSS, SASS, LESS, Glamour, Coffeescript, Stylus, etc.</li>
-            <li class="fragment"><b>Data Source</b> - Drupal, Wordpress, Wikipedia, npm, filesystem, mongodb, etc.</li>
-          </ul>
+          <h3>Hooks Rules</h3>
+          Don’t call Hooks inside loops, conditions, or nested functions.
+          Don’t call Hooks from regular JavaScript functions
+
+          <aside class="notes">
+            - Hooks need to ALWAYS preserve the order that they are called.
+          </aside>
         </section>
 
         <section>
-          <h3>Advanced API Usage</h3>
-          <ul>
-            <li class="fragment"><b>Node APIs</b><br/>https://next.gatsbyjs.org/docs/node-apis/</li>
-            <li class="fragment"><b>Browser APIs</b><br/>https://next.gatsbyjs.org/docs/browser-apis/</li>
-            <li class="fragment"><b>SSR APIs</b><br/>https://next.gatsbyjs.org/docs/ssr-apis/</li>
-          </ul>
+          <h3>How to get started today.</h3>
+          <code><pre>
+// Start project and get correct react version
+npx create-react-app example
+npm install react@next react-dom@next
+
+// ESLint rules for hooks
+npm install eslint-plugin-react-hooks@next
+          </pre></code>
         </section>
 
         <section>
@@ -325,17 +257,10 @@ export default Counter;
           <br/>
           <ul>
             <li>
-              <a href="https://www.gatsbyjs.org/tutorial/">https://www.gatsbyjs.org/tutorial/</a>
-            <li>
-              <a href="https://next.gatsbyjs.org/docs/querying-with-graphql/">https://next.gatsbyjs.org/docs/querying-with-graphql/</a>
-            <li>
-              <a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">https://developers.google.com/web/fundamentals/performance/prpl-pattern/</a>
-            <li>
-              <a href="https://www.gatsbyjs.org/features/">https://www.gatsbyjs.org/features/</a>
+              <a href="https://reactjs.org/docs/hooks-intro.html">https://reactjs.org/docs/hooks-intro.html</a>
             </li>
           </ul>
         </section>
-
       </div>
     </div>
 
