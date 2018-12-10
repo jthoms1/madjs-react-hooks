@@ -107,18 +107,88 @@
             </li>
           </aside>
         </section>
+        
+        <section>
+          <h3>What are Hooks</h3>
+          <code><pre>
+import * as React from 'react';
+
+const Counter = () => {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div className="counter">
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  )
+};
+
+export default Counter;
+          </pre></code>
+
+          <aside class="notes">
+          - Hooks are a new feature proposal that lets you write only functional components and 
+            use React features without needing a class. 
+
+          - First announced at React Conf last month and since then it has really blown up in popularity.
+          - I was at React Conf and that's all anyone could talk about.
+          - Vue is dabbling with implementing. 
+          </aside>
+        </section>
 
         <section>
-          <img src="images/gatsby.svg" class="nostyle" />
+          <h3>Why is React changing again</h3>
+          <ul>
+            <li class="fragment">Stateful Logic is hard to reuse today</li>
+            <li class="fragment">Lifecycle makes components sometimes hard to reason about</li>
+            <li class="fragment">Classes are not the ideal solution</li>
+          </ul>
           <aside class="notes">
-            Gatsby is a static site builder built with React.  You can think of it as a React
-            based tool for building static HTML sites. With most static site builders you would
-            think of the data source being markdown, but the Gatsby the datasource can be many different
-            things because of the adapters hat it provides. Drupal, Wordperss, APIs, JSON, Markdown and 
-            many others.
+            I say again because it first it was createClass and mixins.
 
-            - First created in 2015. Open source
-          </aside>
+            - Stateful Logic is hard to reuse
+              - Render Props and Higher-Order Components 
+              - Patterns can be cumbersome and make you restructure your app's tree to maintain them
+              - React realized the primitives needed to change for better sharing (rare for them)
+
+            - Lifecycle makes components sometimes hard to reason about
+              - Hate refactoring functional components to Class components because you need Lifecycle events or to add state
+              - Ever had a simple component get a little too big?
+                - then you split it up into more components for reuse and then we get back to stateful logic is hard to reuse
+
+            - Classes are not the ideal solution
+              - Issues with minification, hot reloading, they don't treeshake 
+          <aside>
+        </section>
+
+        <section>
+          <h3>How will this affect my codebase</h3>
+          <ul>
+            <li class="fragment">Meant to be a gradual enhancement</li>
+            <li class="fragment">Work side by side with class based components</li>
+            <li class="fragment">Get a team consensus on usage</li>
+          </ul>
+          <aside class="notes">
+            - This is an opt in feature. Classes are not planned to be removed
+            - They work side by side with all existing features
+            - Obviously you will need to work with your team to deside if it is time to start the transition.
+              - It might be very attractive to do so, but remember the code will look quite different
+          <aside>
+        </section>
+
+        <section>
+          <h3>Hooks API</h3>
+        </section>
+
+        <section>
+          <h3>Refactoring into a simpler approach</h3>
+        </section>
+
+        <section>
+          <h3>Composition</h3>
+        </section>
+
         </section>
 
         <section>
