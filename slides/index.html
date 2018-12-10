@@ -24,6 +24,10 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
 
+      var encodedStr = rawStr.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+        return '&#' + i.charCodeAt(0) + ';';
+      });
+
     </script>
 
     <style>
@@ -110,22 +114,7 @@
         
         <section>
           <h3>What are Hooks</h3>
-          <code><pre>
-import * as React from 'react';
-
-const Counter = () => {
-  const [count, setCount] = React.useState(0);
-
-  return (
-    <div className="counter">
-      <p>You clicked {count} times.</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  )
-};
-
-export default Counter;
-          </pre></code>
+          <img class="nostyle" src="images/hooks-intro-code.png" />
 
           <aside class="notes">
           - Hooks are a new feature proposal that lets you write only functional components and 
@@ -259,6 +248,16 @@ npm install react@next react-dom@next
 npm install eslint-plugin-react-hooks@next
           </pre></code>
         </section>
+
+        <section>
+          <h3>Community Impact</h3>
+          <ul>
+            <li>Render Props and HOC are going to be going to be less common for libs</li>
+            useRedux over connect
+            useRouter over withRouter.
+          </ul>
+        </section>
+
 
         <section>
           <h2>Questions?</h2>

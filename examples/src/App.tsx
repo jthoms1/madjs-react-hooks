@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Example1 from './components/useState/ExampleOneOld';
+import ExampleOne from './components/useState/ExampleOne';
+import ExampleTwo from './components/useEffect/ExampleTwo';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Example1/>
+        <ExampleOne/>
+        <ExampleTwo/>
       </div>
     );
   }
