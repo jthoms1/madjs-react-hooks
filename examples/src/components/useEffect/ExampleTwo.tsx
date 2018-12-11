@@ -17,7 +17,7 @@ export default class ExampleTwo extends Component<Props, State> {
     document.title = `You clicked ${this.state.count} times`;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     document.title = `You clicked ${this.state.count} times`;
   }
 

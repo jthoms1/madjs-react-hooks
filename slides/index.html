@@ -34,6 +34,9 @@
       .reveal h2 {
         margin-bottom: 40px;
       }
+      .reveal section li {
+        margin-bottom: 1em;
+      }
       body > div.reveal {
         font-family: 'Poppins', sans-serif;
         color: #B9C0D2;
@@ -168,41 +171,41 @@
         </section>
 
         <section>
-          <h3>Refactoring into a simpler approach</h3>
-
-          break down example
-        </section>
-
-
-        <section>
           <h3>Hooks API</h3>
           <ul>
             <li>useState</li>
             <li>useEffect</li>
           </ul>
+          <aside class="notes">
+            2 primary hooks that you will be using.  There are more available but majority.
+          </aside>
         </section>
 
         <section>
           <h3>useState</h3>
-          - function returns an array
-          - [0] is the current value, [1] is the setter
-          - Easy to understand
+          <img class="nostyle" src="images/hooks-intro-code.png" />
+          <aside class="notes"> 
+            <ul>
+              <li>function returns an array
+              <li>[0] is the current value, [1] is the setter
+              <li>Easy to understand
+              </ul>
+          </aside>
         </section>
 
         <section>
           <h3>useEffect</h3>
-          - side effects in a function
-          - componentDidMount, componentDidUpdate, componentWillMount
-          - set a function to be executed after render is done
-          - gets rid of some duplicates with DidMount, DidUpdate
-          - runs after every render
-          - does not block
-
-          - return a function if you want it to be executed for cleanup. Think WillUnmount
-          - fantastic for subscribe, unsubscribe
-
-          - accepts second parameter as array of values to check if a value is different to rerun
-
+          <img class="nostyle" style="height: 100%; width: 100%;" src="images/hooks-effect-code.png" />
+          <aside class="notes">
+            <li>side effects in a function
+            <li>componentDidMount, componentDidUpdate, componentWillMount
+            <li>set a function to be executed after render is done
+            <li>gets rid of some duplicates with DidMount, DidUpdate
+            <li>runs after every render
+          </aside>
+        </section>
+        <section>
+          <h3>Refactoring into a simpler approach (DEMO)</h3>
         </section>
 
         <section>
@@ -217,9 +220,9 @@
             <li>useLayoutEffect</li>
           </ul>
           <aside class="notes">
-            <li>useContext - </li>
-            <li>useReducer - </li>
-            <li>useCallback - </li>
+            <li>useContext - Uses react context</li>
+            <li>useReducer - Acts like a redux reducer with dispatch method</li>
+            <li>useCallback - memoized method callback</li>
             <li>useMemo - </li>
             <li>useRef - </li>
             <li>useImperativeMethods - </li>
@@ -229,8 +232,10 @@
 
         <section>
           <h3>Hooks Rules</h3>
-          Don’t call Hooks inside loops, conditions, or nested functions.
-          Don’t call Hooks from regular JavaScript functions
+          <ul>
+            <li class="fragment">Don’t call Hooks inside loops, conditions, or nested functions.
+            <li class="fragment">Don’t call Hooks from regular JavaScript functions
+          </ul>
 
           <aside class="notes">
             - Hooks need to ALWAYS preserve the order that they are called.
@@ -239,25 +244,24 @@
 
         <section>
           <h3>How to get started today.</h3>
-          <code><pre>
-// Start project and get correct react version
+          <pre><code>
 npx create-react-app example
 npm install react@next react-dom@next
 
-// ESLint rules for hooks
 npm install eslint-plugin-react-hooks@next
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
           <h3>Community Impact</h3>
           <ul>
             <li>Render Props and HOC are going to be going to be less common for libs</li>
+          </ul>
+          <aside class="notes">
             useRedux over connect
             useRouter over withRouter.
-          </ul>
+          </aside>
         </section>
-
 
         <section>
           <h2>Questions?</h2>
